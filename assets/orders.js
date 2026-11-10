@@ -1,4 +1,5 @@
 // Изменение от 2026-11-10: блок заказов ASmel — подготовка заявки и защищённый контракт отправки | не имитировать доставку, не хранить персональные данные в браузере | Кто внес: Алина
+// Изменение от 2026-11-11: API ASG Orders и согласие клиента | сервер принимает заявку только с consent=true, подтверждает регистрационный номер | Кто внес: Алина
 (() => {
   'use strict';
   const form = document.getElementById('order-form');
@@ -100,7 +101,7 @@
         method: 'POST',
         mode: 'cors',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data),
+        body: JSON.stringify({...data,consent:true}),
         signal: controller.signal,
         credentials: 'omit',
         cache: 'no-store',
@@ -112,7 +113,7 @@
           !/^[A-Za-z0-9_-]{6,80}$/.test(receipt.request_id)) {
         throw new Error('Invalid receipt');
       }
-      setStatus('Заявка принята. Номер: ' + receipt.request_id, 'success');
+      setStatus('Заявка зарегистрирована. Номер: ' + receipt.request_id + '. Уведомления доставляются отдельно.', 'success');
       form.reset();
       prepared = '';
       preview.hidden = true;

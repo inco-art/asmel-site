@@ -1,4 +1,5 @@
 // Изменение от 2026-11-10: тест подтверждения доставки с согласием | проверять ответ сервера, а не блокировку ввода до согласия | Кто внес: Алина
+// Изменение от 2026-11-11: контракт consent=true для ASG Orders | не подтверждать заказ без согласия клиента и реальной квитанции | Кто внес: Алина
 // Изменение от 2026-11-10: тесты клиентского режима заказов | черновик без отправки, независимое подтверждение сервера и защита от ложного успеха | Кто внес: Алина
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -77,6 +78,7 @@ test('configured HTTPS endpoint requires a confirmed server receipt to claim suc
   assert.equal(url,'https://example.test/api/orders');
   assert.equal(request.method,'POST');
   assert.equal(request.credentials,'omit');
+  assert.equal(JSON.parse(request.body).consent,true);
   assert.match(h.nodes.get('order-status').textContent,/ASG_20261110_0001/);
   assert.equal(h.form.didReset,true);
 });
