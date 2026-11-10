@@ -1,0 +1,54 @@
+/* Изменение от 2026-11-10: ASG Dark Web — оформление секции заказов | согласованный с DeepSpace адаптивный блок без внешних зависимостей | Кто внес: Алина */
+:root{--order-accent:#62d8f8;--order-deep:#07172b;--order-glass:rgba(20,44,73,.68)}
+#orders{position:relative;isolation:isolate;padding:72px 0 90px;overflow:hidden}
+#orders::before{content:"";position:absolute;inset:5% -15% auto auto;width:min(660px,85vw);height:430px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse,rgba(34,135,193,.16),transparent 72%)}
+.order-intro{max-width:710px;margin-bottom:28px}
+.order-kicker{font-size:.8rem;font-weight:750;letter-spacing:.14em;text-transform:uppercase;color:var(--order-accent)}
+#orders h2{font-size:clamp(2rem,4.3vw,3.6rem);line-height:1.12;letter-spacing:-.045em;margin:12px 0 18px}
+#orders .order-intro p{color:var(--muted);font-size:1.04rem;max-width:660px;margin:0}
+.order-layout{display:grid;grid-template-columns:minmax(0,.81fr) minmax(0,1.19fr);gap:22px;align-items:start}
+.order-lead{display:grid;gap:12px}
+.order-benefit{padding:21px 22px;border:1px solid rgba(133,205,240,.2);background:linear-gradient(135deg,rgba(22,53,88,.53),rgba(9,22,40,.72));border-radius:18px}
+.order-benefit strong{font-size:1.06rem;color:var(--text);display:block;margin-bottom:4px}
+.order-benefit p{font-size:.93rem;color:var(--muted);margin:0;line-height:1.6}
+.order-steps{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:7px;font-size:.8rem;color:var(--muted)}
+.order-steps span{padding:6px 10px;border:1px solid rgba(125,203,244,.23);border-radius:999px;background:rgba(12,39,68,.55)}
+.order-form-shell{border:1px solid rgba(133,205,240,.29);background:linear-gradient(140deg,rgba(21,48,78,.86),rgba(8,22,42,.89));box-shadow:0 18px 70px rgba(0,0,0,.19),inset 0 1px rgba(255,255,255,.045);border-radius:24px;padding:clamp(20px,3.5vw,34px)}
+@supports ((backdrop-filter:blur(12px)) or (-webkit-backdrop-filter:blur(12px))){.order-form-shell{background:var(--order-glass);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}}
+.order-form-shell h3{font-size:1.26rem;margin:0 0 6px;letter-spacing:-.02em}
+.order-form-shell .order-form-note{margin:0 0 20px;font-size:.9rem;color:var(--muted)}
+.order-form{display:grid;gap:14px}
+.order-field{display:grid;gap:7px;min-width:0}
+.order-field label{font-size:.88rem;font-weight:650;color:#d6e8f8}
+.order-field label .optional{font-weight:400;color:var(--muted)}
+.order-field input,.order-field select,.order-field textarea{width:100%;min-width:0;min-height:48px;appearance:none;border-radius:12px;border:1px solid #456582;background:rgba(5,20,39,.7);color:var(--text);font:inherit;padding:11px 14px;outline:0;transition:border-color .16s ease,box-shadow .16s ease}
+.order-field textarea{min-height:138px;resize:vertical}
+.order-field select{appearance:auto}
+.order-field input::placeholder,.order-field textarea::placeholder{color:#91a9c2;opacity:1}
+.order-field input:focus-visible,.order-field select:focus-visible,.order-field textarea:focus-visible{border-color:var(--order-accent);box-shadow:0 0 0 3px rgba(98,216,248,.16)}
+.order-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-width:0}
+.order-privacy{font-size:.79rem;color:var(--muted);line-height:1.55;margin:2px 0 0}
+.order-primary{font:inherit;font-weight:750;background:linear-gradient(105deg,#66dff5,#8bd3ff);color:#08182b;border:0;border-radius:12px;min-height:50px;padding:12px 20px;cursor:pointer}
+.order-primary:hover{filter:brightness(1.07)}
+.order-primary:focus-visible,.order-secondary:focus-visible{outline:3px solid #a5eeff;outline-offset:3px}
+.order-primary:disabled,.order-secondary:disabled{opacity:.55;cursor:not-allowed}
+.order-status{font-size:.88rem;line-height:1.5;min-height:1.4em;color:#c8e5fa;margin:0}
+.order-status[data-kind="error"]{color:#ffd6bb}
+.order-status[data-kind="success"]{color:#a9f2df}
+.order-preview{border:1px solid rgba(98,216,248,.26);border-radius:16px;background:rgba(5,21,40,.76);padding:18px;margin-top:4px}
+.order-preview[hidden]{display:none}
+.order-preview h4{margin:0 0 12px;font-size:1.02rem}
+.order-preview pre{color:#cddff2;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;max-height:280px;overflow:auto;font: .86rem/1.55 ui-monospace,SFMono-Regular,Consolas,monospace}
+.order-preview-actions{display:flex;flex-wrap:wrap;gap:9px}
+.order-secondary{font:inherit;font-size:.88rem;font-weight:650;min-height:43px;border:1px solid rgba(123,204,241,.38);border-radius:10px;color:#d8efff;background:rgba(22,64,100,.55);padding:10px 14px;cursor:pointer}
+.order-honeypot{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+@media(max-width:840px){.order-layout{grid-template-columns:1fr}.order-lead{grid-template-columns:repeat(3,minmax(0,1fr))}.order-steps{grid-column:1/-1}}
+@media(max-width:620px){#orders{padding:52px 0 62px}.order-form-shell{border-radius:18px;padding:20px 16px}.order-lead{grid-template-columns:1fr}.order-row{grid-template-columns:1fr}.order-steps{gap:6px}}
+@media(prefers-reduced-motion:reduce){#orders *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Изменение от 2026-11-10: навигация с четвёртой ссылкой и второй CTA | убрать переполнение на мобильных экранах | Кто внес: Алина */
+.links{flex-wrap:wrap;justify-content:flex-end}
+.order-hero-link{display:inline-block;margin:20px 0 0 12px;padding:11px 18px;border:1px solid rgba(139,211,255,.55);color:#cdeeff;border-radius:12px;font-weight:700;background:rgba(18,53,84,.32)}
+.order-hero-link:hover{border-color:#9ee9ff;background:rgba(18,79,120,.4)}
+.order-hero-link:focus-visible{outline:2px solid #9ee9ff;outline-offset:3px}
+@media(max-width:650px){nav{flex-wrap:wrap}.links{justify-content:flex-start;width:100%;gap:12px 18px}.order-hero-link{margin-left:0}.hero .button{margin-right:8px}}
